@@ -1,0 +1,62 @@
+<div class="flex justify-center gap-4">
+  <div class="w-1/3 mt-5 pl-3">
+   <%= render 'layouts/partial/sidenav' %>
+  </div>
+  <div class="w-2/3">
+  <!-- tab menu -->
+  <ul class="mt-10 flex justify-start items-center">
+      <li class="cursor-pointer py-2 px-4 text-gray-500 border-b-8 border-red-400 matching-trigger">マッチング中</li>
+      <li class="cursor-pointer py-2 px-4 text-gray-500 border-b-8 from-partner-trigger">お相手から</li>
+  </ul>
+  <!-- /tab menu -->
+  
+  <!-- matching area -->
+  <table class="table-auto mt-10 matching-page">
+  <tbody>
+  <% if @mutual_users.any? %>
+  <% @mutual_users.each do |user| %>
+    <tr>
+      <td class="border px-4 py-2">
+      <% if user.profile_image %>
+      <%= image_tag user.profile_image.profile_image.url, class: 'h-full w-full' %>
+      <% else %>
+      <%= image_tag 'profile-logo.png', class: 'w-24 h-24' %>
+      <% end %></td>
+      <td class="border px-4 py-2"><%= user.name %>/<%= user.age %>歳/<%= user.residence %></td>
+      <td class="w-60 border px-4 py-2"><%= link_to 'プロフィール詳細', user_path(user.id), class: 'block mx-auto w-40 text-center p-3 rounded-full bg-blue-400 text-white font-bold hover:opacity-70' %>
+    </td>
+    </tr>
+  <% end %>
+  <% end %>
+  </tbody>
+  </table>
+  <!-- matching area -->
+
+  <!-- from partner -->
+  <table class="hidden table-auto mt-10 from-partner-page">
+  <tbody>
+  <% if @followers.any? %>
+  <% @followers.each do |follower| %>
+    <tr>
+      <td class="border px-4 py-2">
+      <% if follower.profile_image %>
+      <%= image_tag follower.profile_image.profile_image.url, class: 'h-full w-full' %>
+      <% else %>
+      <%= image_tag 'profile-logo.png', class: 'w-24 h-24' %>
+      <% end %></td>
+      <td class="border px-4 py-2"><%= follower.name %>/<%= follower.age %>歳/<%= follower.residence %></td>
+      <td class="w-60 border px-4 py-2">
+      <% if Follow.where(follower_id: @user.id).where(followed_id: follower.id).any? %>
+      <%= link_to 'いいね！を解除', follows_path(:follower_id => @user.id, :followed_id => follower.id), method: :delete, class: 'block mx-auto p-3 w-40 text-center rounded-full bg-red-400 text-white font-bold hover:opacity-70' %>
+      <% else %>
+      <%= link_to 'いいね！を送信', follows_path(:follower_id => @user.id, :followed_id => follower.id), method: :post, class: 'block mx-auto p-3 w-40 text-center rounded-full bg-green-400 text-white font-bold hover:opacity-70' %>
+      <% end %>
+    </td>
+    </tr>
+  <% end %>
+  <% end %>
+  </tbody>
+  </table>
+  <!-- /from partner -->
+  </div>
+</div>

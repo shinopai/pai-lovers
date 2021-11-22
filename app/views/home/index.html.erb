@@ -1,7 +1,11 @@
 <header>
-  <div class="flex justify-between">
-    <div class="text-blue-500 text-text-3xl">PaiLovers</div>
-    <div class="text-blue-500 text-text-3xl">
-    </div>
-  </div>
+<%= render 'layouts/partial/header' %>
 </header>
+
+<main>
+  <p class="pt-20 h-screen text-4xl text-center font-bold">マッチングアプリで<br>人生のパートナーを見つけよう<br><i class="far fa-heart text-red-400 mt-10"></i><br><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'py-3 px-4 mt-10 inline-block text-white bg-blue-400 rounded hover:bg-blue-700' %></p>
+</main>
+
+<footer>
+<%= render 'layouts/partial/footer' %>
+</footer>

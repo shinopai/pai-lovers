@@ -1,29 +1,54 @@
-<h2>Sign up</h2>
+<header>
+<%= render 'layouts/partial/header' %>
+</header>
+ 
+<main>
+  <div class="container mx-auto p-8">
+    <div class="mx-auto w-2/3">
+        <div class="bg-white rounded shadow p-4">
+            <div class="border-b py-8 font-bold text-black text-center text-xl tracking-widest uppercase">
+                ユーザー登録
+            </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |new_user| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <div class="mb-3">
+                    <%= new_user.text_field :name, class: 'border w-full p-3', placeholder: '名前' %>
+                </div>
+                <div class="mb-3">
+                    <%= new_user.text_field :email, class: 'border w-full p-3', placeholder: 'メールアドレス' %>
+                </div>
+                <div class="mb-6">
+                    <%= new_user.password_field :password, class: 'border w-full p-3', placeholder: 'パスワード' %>
+                </div>
+                <div class="mb-6">
+                    <%= new_user.password_field :password_confirmation, class: 'border w-full p-3', placeholder: 'パスワード(確認)' %>
+                </div>
+                <div class="mb-6 flex justify-start gap-10">
+                    <%= new_user.select :age, {'18歳':1, '19歳':2, '20歳':3, '21歳':4, '22歳':5, '23歳':6, '24歳':7, '25歳':8, '26歳':9, '27歳':10, '28歳':11, '29歳':12, '30歳':13, '31歳':14, '32歳':15, '33歳':16, '34歳':17, '35歳':18, '36歳':19, '37歳':20, '38歳':21, '39歳':22, '40歳':23, '41歳':24, '42歳':25, '43歳':26, '44歳':27, '45歳':28, '46歳':29, '47歳':30, '48歳':31, '49歳':32, '50歳':33, '51歳':34, '52歳':35, '53歳':36, '54歳':37, '55歳':38, '56歳':39, '57歳':40, '58歳':41, '59歳':42, '60歳':43}, { include_blank: '年齢を選択' }, class: 'border p-3' %>
+                    <%= new_user.select :sex, {'男性':1, '女性':2}, { include_blank: '性別を選択' }, class: 'border p-3' %>
+                </div>
+                <div class="mb-6">
+                    <%= new_user.fields_for :profile_image do |image| %>
+                    <%= image.label :profile_image, 'プロフィール画像', class: 'inline-block mb-2' %><br>
+                    <%= image.file_field :profile_image, class: 'border p-2' %>
+                    <% end %>
+                </div>
+                <div class="mb-6">
+                    <%= new_user.submit '新規作成', class: 'bg-gray-300 hover:bg-gray-600 w-full p-4 text-sm text-white uppercase font-bold tracking-wider cursor-pointer' %>
+                </div>
+            <% end %>
+            <div class="border-t px-10 py-6">
+                <div class="flex justify-between text-blue-500">
+                  <%= render "devise/shared/links" %>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
+</main>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<footer>
+<%= render 'layouts/partial/footer' %>
+</footer>

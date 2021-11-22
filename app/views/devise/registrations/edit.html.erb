@@ -1,43 +1,72 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="flex justify-center gap-4">
+  <div class="w-1/3 mt-5 pl-3">
+     <%= render 'layouts/partial/sidenav' %>
   </div>
+  <div class="w-2/3">
+  <div class="container mx-auto p-8">
+    <div class="mx-auto w-2/3">
+        <div class="bg-white rounded shadow p-4">
+            <div class="border-b py-8 font-bold text-black text-center text-xl tracking-widest uppercase">
+                プロフィール編集
+            </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+              <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |edit_user| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+                <div class="mb-3">
+                    <%= edit_user.text_field :name, class: 'border w-full p-3', placeholder: '名前' %>
+                </div>
+                <div class="mb-3">
+                    <%= edit_user.text_field :email, class: 'border w-full p-3', placeholder: 'メールアドレス' %>
+                </div>
+                <div class="mb-6">
+                    <i class="text-sm">パスワードの変更が必要ない場合は空白にしてください</i>
+                    <%= edit_user.password_field :password, class: 'border w-full p-3', placeholder: 'パスワード' %>
+                </div>
+                <div class="mb-6">
+                    <%= edit_user.password_field :password_confirmation, class: 'border w-full p-3', placeholder: 'パスワード(確認)' %>
+                </div>
+                <div class="mb-6 flex justify-start gap-10">
+                    <%= edit_user.select :blood_type, {'A型':1, 'B型':2, 'O型':3, 'AB型':4}, { include_blank: '血液型を選択' }, class: 'border p-3' %>
+                    <%= edit_user.select :body_shape, {'スリム':1, 'やや細め':2, '普通':3, 'グラマー':4, '筋肉質':5, 'ややぽっちゃり':6, 'ぽっちゃり':7}, { include_blank: '体型を選択' }, class: 'border p-3' %>
+                </div>
+                <div class="mb-6 flex justify-start gap-10">
+                    <%= edit_user.select :height, {'133cm':1, '134cm':2, '135cm':3, '136cm':4, '137cm':5, '138cm':6, '139cm':7, '140cm':8, '141cm':9, '142cm':10, '143cm':11, '144cm':12, '145cm':13, '146cm':14, '147cm':15, '148cm':16, '149cm':17, '150cm':18, '151cm':19, '152cm':20, '153cm':21, '154cm':22, '155cm':23, '156cm':24, '157cm':25, '158cm':26, '159cm':27, '160cm':28, '161cm':29, '162cm':30, '163cm':31, '164cm':32, '165cm':33, '166cm':34, '167cm':35, '168cm':36, '169cm':37, '170cm':38, '171cm':39, '172cm':40, '173cm':41, '174cm':42, '175cm':43, '176cm':44, '177cm':45, '178cm':46, '179cm':47, '180cm':48, '181cm':49, '182cm':50, '183cm':51, '184cm':52, '185cm':53, '186cm':54, '187cm':55, '188cm':56, '189cm':57, '190cm':58, '191cm':59, '192cm':60, '193cm':61, '194cm':62, '195cm':63, '196cm':64, '197cm':65, '198cm':66, '199cm':67, '200cm':68}, { include_blank: '身長を選択' }, class: 'border p-3' %>
+                    <%= edit_user.select :residence, {'北海道':1, '青森':2, '岩手':3, '宮城':4, '秋田':5, '山形':6, '福島':7, '茨城':8, '栃木':9, '群馬':10, '埼玉':11, '千葉':12, '東京':13, '神奈川':14, '新潟':15, '富山':16, '石川':17, '福井':18, '山梨':19, '長野':20, '岐阜':21, '静岡':22, '愛知':23, '三重':24, '滋賀':25, '京都':26, '大阪':27, '兵庫':28, '奈良':29, '和歌山':30, '鳥取':31, '島根':32, '岡山':33, '広島':34, '山口':35, '徳島':36, '香川':37, '愛媛':38, '高知':39, '福岡':40, '佐賀':41, '長崎':42, '熊本':43, '大分':44, '宮崎':45, '鹿児島':46, '沖縄':47}, { include_blank: '居住地を選択' }, class: 'border p-3' %>
+                </div>
+                <div class="mb-6 flex justify-start gap-10">
+                    <%= edit_user.select :birth_place, {'北海道':1, '青森':2, '岩手':3, '宮城':4, '秋田':5, '山形':6, '福島':7, '茨城':8, '栃木':9, '群馬':10, '埼玉':11, '千葉':12, '東京':13, '神奈川':14, '新潟':15, '富山':16, '石川':17, '福井':18, '山梨':19, '長野':20, '岐阜':21, '静岡':22, '愛知':23, '三重':24, '滋賀':25, '京都':26, '大阪':27, '兵庫':28, '奈良':29, '和歌山':30, '鳥取':31, '島根':32, '岡山':33, '広島':34, '山口':35, '徳島':36, '香川':37, '愛媛':38, '高知':39, '福岡':40, '佐賀':41, '長崎':42, '熊本':43, '大分':44, '宮崎':45, '鹿児島':46, '沖縄':47}, { include_blank: '出身地を選択' }, class: 'border p-3' %>
+                    <%= edit_user.select :holiday, {'土日':1, '平日':2, '不定期':3, 'その他':4}, { include_blank: '休日を選択' }, class: 'border p-3' %>
+                </div>
+                <div class="mb-6 flex justify-start gap-10">
+                    <%= edit_user.select :work, {'上場企業':1, '金融':2, '公務員':3, 'コンサル':4, '経営者・役員':5, '大手企業':6, '大手外資':7, '大手商社':8, '外資金融':9, '医師':10, '看護師':11, '薬剤師':12, '弁護士':13, '公認会計士':14, 'パイロット':15, '客室乗務員':16, '広告':17, 'マスコミ':18, '教育関連':19, 'IT関連':20, '食品関連':21, '旅行関係':22, '製薬':23, '保険':24, '不動産':25, '建築関連':26, '通信':27, '流通':28, 'WEB関連':29, 'ブライダル':30, 'クリエイター':31, '接客業':32, '受付':33, '調理師・栄養士':34, 'アパレル・ショップ':35, '美容関係':36, 'エンターテインメント':37, 'アナウンサー':38, '芸能・モデル':39, 'イベントコンパニオン':40, 'スポーツ選手':41, '秘書':42, '事務員':43, '福祉・介護':44, '保育士':45, '会社員':46, '学生':47, '自由業':48, '税理士':49, 'エンジニア':50, '建築士':51, '美容師':52, '歯科医師':53, '歯科衛生士':54, 'その他':55}, { include_blank: '職業を選択' }, class: 'border p-3' %>
+                </div>
+                <div class="mb-6">
+                    <%= edit_user.text_area :content, class: 'border w-full p-3', placeholder: '自己紹介文', rows: 10, style: 'resize: none;' %>
+                </div>
+                <div class="mb-6">
+                    <%= edit_user.fields_for :profile_image do |image| %>
+                    <%= image.label :profile_image, 'プロフィール画像', class: 'inline-block mb-2' %><br>
+                    <%= image.file_field :profile_image, class: 'border p-2' %>
+                    <% end %>
+                </div>
+                <div class="mb-6">
+                    <i class="text-sm">編集内容の確認のため、現在のパスワードを入力してください</i>
+                    <%= edit_user.password_field :current_password, class: 'border w-full p-3', placeholder: 'パスワード(現在)' %>
+                </div>
+                <div class="mb-6">
+                    <%= edit_user.submit '更新', class: 'bg-gray-300 hover:bg-gray-600 w-full p-4 text-sm text-white uppercase font-bold tracking-wider cursor-pointer' %>
+                </div>
+            <% end %>
+            <div class="border-t px-10 py-6">
+                <div class="text-blue-500 text-center font-bold">
+                  <h3>退会手続き</h3>
+                  <p>こちらから <%= button_to "退会する", registration_path(resource_name), data: { confirm: "本当に宜しいですか?" }, method: :delete, class: 'cursor-pointer' %></p>
+                  <%= link_to "戻る", :back, class: 'inline-block mt-5' %>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

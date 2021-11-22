@@ -1,0 +1,13 @@
+<div class="flex justify-center gap-4">
+  <div class="w-1/3 mt-5 pl-3">
+   <%= render 'layouts/partial/sidenav' %>
+  </div>
+  <div class="w-2/3">
+    <h1 class="mt-10">カテゴリー作成(管理者のみ)</h1>
+    <%= form_with model: @category, url: category_path, local: true do |new_category| %>
+    <%= new_category.text_field :name, class: 'border' %><br>
+    <%= new_category.file_field :category_image %><br>
+    <%= new_category.submit '作成', class: 'mt-10 bg-gray-300 p-2 cursor-pointer' %>
+    <% end %>
+  </div>
+</div>

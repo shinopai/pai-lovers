@@ -1,0 +1,2 @@
+module GuestuserHelper
+end

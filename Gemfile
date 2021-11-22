@@ -61,3 +61,5 @@ gem 'kaminari'
 gem 'ransack'
 gem 'annotate'
 gem 'faker'
+gem 'carrierwave'
+gem "rails-i18n"

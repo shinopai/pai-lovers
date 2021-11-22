@@ -1,0 +1,32 @@
+<div class="flex justify-center gap-4">
+  <div class="w-1/3 mt-5 pl-3">
+   <%= render 'layouts/partial/sidenav' %>
+  </div>
+  <div class="w-2/3">
+    <h1 class="mt-10 text-xl font-bold">メッセージ一覧</h1>
+    <table class="table-auto mt-10 matching-page">
+      <tbody>
+      <% if @mutual_users.any? %>
+      <% @mutual_users.each do |user| %>
+        <tr>
+          <td class="border px-4 py-2">
+          <% if user.profile_image %>
+          <%= image_tag user.profile_image.profile_image.url, class: 'h-full w-full' %>
+          <% else %>
+          <%= image_tag 'profile-logo.png', class: 'w-24 h-24' %>
+          <% end %></td>
+          <td class="border px-4 py-2"><%= user.name %>/<%= user.age %>歳/<%= user.residence %></td>
+          <td class="w-60 border px-4 py-2">
+          <% if Entry.where(user_id: user.id).select(:room_id).any? %>
+          <%= link_to 'メッセージを送る', room_path(Entry.where(user_id: user.id).first.room_id), class: 'block mx-auto w-40 text-center p-3 rounded-full bg-blue-400 text-white font-bold hover:opacity-70' %>
+          <% else %>
+          <%= link_to 'メッセージを送る', rooms_path(:partner_id => user.id), method: :post, class: 'block mx-auto w-40 text-center p-3 rounded-full bg-blue-400 text-white font-bold hover:opacity-70' %>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

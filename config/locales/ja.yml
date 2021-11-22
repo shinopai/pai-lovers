@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: 'が空です'
+            email:
+              blank: 'が空です'
+            password:
+              blank: 'が空です'
+            age:
+              blank: 'が選択されていません'
+            sex:
+              blank: 'が選択されていません'
+    models:
+      user:
+    attributes:
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: '確認用パスワード'
+        current_password: '現在のパスワード'
+        age: '年齢'
+        sex: '性別'
+      message:
+        content: '内容'
+  views:
+    pagination:
+      previous: '前へ'
+      next: '次へ'
+      first: '最初'
+      last: '最後'
+      truncate: '...'

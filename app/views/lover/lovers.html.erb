@@ -1,0 +1,60 @@
+<div class="flex justify-center gap-4">
+  <div class="w-1/3 mt-5 pl-3">
+      <%= render 'layouts/partial/sidenav' %>
+  </div>
+<div class="w-2/3">
+  <h1 class="mt-12 font-bold">探す</h1>
+  <div class="w-1/6 ml-auto pr-10 text-right text-blue-400 font-bold text-3xl search-form-trigger cursor-pointer"><i class="fas fa-search"></i></div>
+  <section class="px-4 mx-auto mt-12 max-w-7xl sm:px-6 lg:px-8 lg:py-20">
+
+  <!-- search form -->
+  <div class="hidden bg-gray-800 p-10 rounded-xl absolute z-10 search-form">
+   <div class="mb-5 ml-auto w-12 text-xl text-white text-right font-bold cursor-pointer close-button"><i class="fas fa-times"></i></div>
+  <%= search_form_for @q, url: search_lover_index_path do |search| %>
+    <div class="mb-6 flex justify-start gap-10">
+    <%= search.select :height_eq, {'133cm':1, '134cm':2, '135cm':3, '136cm':4, '137cm':5, '138cm':6, '139cm':7, '140cm':8, '141cm':9, '142cm':10, '143cm':11, '144cm':12, '145cm':13, '146cm':14, '147cm':15, '148cm':16, '149cm':17, '150cm':18, '151cm':19, '152cm':20, '153cm':21, '154cm':22, '155cm':23, '156cm':24, '157cm':25, '158cm':26, '159cm':27, '160cm':28, '161cm':29, '162cm':30, '163cm':31, '164cm':32, '165cm':33, '166cm':34, '167cm':35, '168cm':36, '169cm':37, '170cm':38, '171cm':39, '172cm':40, '173cm':41, '174cm':42, '175cm':43, '176cm':44, '177cm':45, '178cm':46, '179cm':47, '180cm':48, '181cm':49, '182cm':50, '183cm':51, '184cm':52, '185cm':53, '186cm':54, '187cm':55, '188cm':56, '189cm':57, '190cm':58, '191cm':59, '192cm':60, '193cm':61, '194cm':62, '195cm':63, '196cm':64, '197cm':65, '198cm':66, '199cm':67, '200cm':68}, { include_blank: '身長を選択' }, class: 'border p-3' %>
+    <%= search.select :age_eq, {'18歳':1, '19歳':2, '20歳':3, '21歳':4, '22歳':5, '23歳':6, '24歳':7, '25歳':8, '26歳':9, '27歳':10, '28歳':11, '29歳':12, '30歳':13, '31歳':14, '32歳':15, '33歳':16, '34歳':17, '35歳':18, '36歳':19, '37歳':20, '38歳':21, '39歳':22, '40歳':23, '41歳':24, '42歳':25, '43歳':26, '44歳':27, '45歳':28, '46歳':29, '47歳':30, '48歳':31, '49歳':32, '50歳':33, '51歳':34, '52歳':35, '53歳':36, '54歳':37, '55歳':38, '56歳':39, '57歳':40, '58歳':41, '59歳':42, '60歳':43}, { include_blank: '年齢を選択' }, class: 'border p-3' %>
+    <%= search.select :sex_eq, {'男性':1, '女性':2}, { include_blank: '性別を選択' }, class: 'border p-3' %>
+    </div>
+    <div class="mb-6 flex justify-start gap-10">
+      <%= search.select :body_shape_eq, {'スリム':1, 'やや細め':2, '普通':3, 'グラマー':4, '筋肉質':5, 'ややぽっちゃり':6, 'ぽっちゃり':7}, { include_blank: '体型を選択' }, class: 'border p-3' %>
+      <%= search.select :blood_type_eq, {'A型':1, 'B型':2, 'O型':3, 'AB型':4}, { include_blank: '血液型を選択' }, class: 'border p-3' %>
+    </div>
+    <div class="mb-6 flex justify-start gap-10">
+      <%= search.select :residence_eq, {'北海道':1, '青森':2, '岩手':3, '宮城':4, '秋田':5, '山形':6, '福島':7, '茨城':8, '栃木':9, '群馬':10, '埼玉':11, '千葉':12, '東京':13, '神奈川':14, '新潟':15, '富山':16, '石川':17, '福井':18, '山梨':19, '長野':20, '岐阜':21, '静岡':22, '愛知':23, '三重':24, '滋賀':25, '京都':26, '大阪':27, '兵庫':28, '奈良':29, '和歌山':30, '鳥取':31, '島根':32, '岡山':33, '広島':34, '山口':35, '徳島':36, '香川':37, '愛媛':38, '高知':39, '福岡':40, '佐賀':41, '長崎':42, '熊本':43, '大分':44, '宮崎':45, '鹿児島':46, '沖縄':47}, { include_blank: '居住地を選択' }, class: 'border p-3' %>
+      <%= search.select :birth_place_eq, {'北海道':1, '青森':2, '岩手':3, '宮城':4, '秋田':5, '山形':6, '福島':7, '茨城':8, '栃木':9, '群馬':10, '埼玉':11, '千葉':12, '東京':13, '神奈川':14, '新潟':15, '富山':16, '石川':17, '福井':18, '山梨':19, '長野':20, '岐阜':21, '静岡':22, '愛知':23, '三重':24, '滋賀':25, '京都':26, '大阪':27, '兵庫':28, '奈良':29, '和歌山':30, '鳥取':31, '島根':32, '岡山':33, '広島':34, '山口':35, '徳島':36, '香川':37, '愛媛':38, '高知':39, '福岡':40, '佐賀':41, '長崎':42, '熊本':43, '大分':44, '宮崎':45, '鹿児島':46, '沖縄':47}, { include_blank: '出身地を選択' }, class: 'border p-3' %>
+      <%= search.select :holiday_eq, {'土日':1, '平日':2, '不定期':3, 'その他':4}, { include_blank: '休日を選択' }, class: 'border p-3' %>
+    </div>
+    <div class="mb-6 flex justify-start gap-10">
+      <%= search.select :holiday_eq, {'土日':1, '平日':2, '不定期':3, 'その他':4}, { include_blank: '休日を選択' }, class: 'border p-3' %>
+      <%= search.select :work_eq, {'上場企業':1, '金融':2, '公務員':3, 'コンサル':4, '経営者・役員':5, '大手企業':6, '大手外資':7, '大手商社':8, '外資金融':9, '医師':10, '看護師':11, '薬剤師':12, '弁護士':13, '公認会計士':14, 'パイロット':15, '客室乗務員':16, '広告':17, 'マスコミ':18, '教育関連':19, 'IT関連':20, '食品関連':21, '旅行関係':22, '製薬':23, '保険':24, '不動産':25, '建築関連':26, '通信':27, '流通':28, 'WEB関連':29, 'ブライダル':30, 'クリエイター':31, '接客業':32, '受付':33, '調理師・栄養士':34, 'アパレル・ショップ':35, '美容関係':36, 'エンターテインメント':37, 'アナウンサー':38, '芸能・モデル':39, 'イベントコンパニオン':40, 'スポーツ選手':41, '秘書':42, '事務員':43, '福祉・介護':44, '保育士':45, '会社員':46, '学生':47, '自由業':48, '税理士':49, 'エンジニア':50, '建築士':51, '美容師':52, '歯科医師':53, '歯科衛生士':54, 'その他':55}, { include_blank: '職業を選択' }, class: 'border p-3' %>
+    </div>
+    <div class="mb-6">
+    <%= search.submit '検索', class: 'bg-blue-300 hover:bg-blue-500 w-full p-4 text-sm text-white uppercase font-bold tracking-wider cursor-pointer' %>
+    </div>
+    <% end %>
+  </div>
+  <!-- /search form -->
+
+      <ul role="list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+      <% if @all_lovers.any? %>
+      <% @all_lovers.each do |lover| %>
+        <li class="relative m-1">
+          <div class="block overflow-hidden w-full group aspect-w-10 aspect-h-7">
+            <%= link_to image_tag('profile-logo.png', class: 'object-cover pointer-events-none group-hover:opacity-75', width: 300, height: 300), user_path(lover.id) %>
+            <button type="button" class="absolute inset-0 left-4 top-20">
+              <span><%= lover.name %></span>
+              <span><%= show_age(lover.age) %></span>
+            </button>
+          </div>
+        </li>
+      <% end %>
+      <% else %>
+      <p>まだ誰も登録していません</p>
+      <% end %>
+      </ul>
+    </section>
+
+    <%= paginate @all_lovers %>
+</div>
+</div>

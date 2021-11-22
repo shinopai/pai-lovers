@@ -1,0 +1,11 @@
+<%= link_to 'PaiLovers', lover_index_path, class: 'text-blue-500 text-3xl' %>
+<ul class="text-center mt-10 text-xl">
+  <li><%= link_to all_lover_index_path, class: 'hover:text-blue-400 hover:underline' do %><i class="fas fa-search"></i>&nbsp;さがす<% end %></li>
+  <li class="mt-4"><%= link_to messages_path, class: 'hover:text-blue-400 hover:underline' do %><i class="fas fa-comment"></i>&nbsp;メッセージ<% end %></li>
+  <li class="mt-4"><%= link_to follows_path, class: 'hover:text-blue-400 hover:underline' do %><i class="fas fa-heart"></i>&nbsp;マッチング<% end %></li>
+  <li class="mt-4"><%= link_to communities_path, class: 'hover:text-blue-400 hover:underline' do %><i class="fas fa-users"></i>&nbsp;コミュニティ<% end %></li>
+  <li class="mt-4"><%= link_to destroy_user_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>&nbsp;ログアウト<% end %></li>
+  <% if current_user.admin? %>
+    <li class="mt-4"><%= link_to new_category_path do %><i class="fas fa-user-cog"></i>&nbsp;管理者ページ<% end %></li>
+  <% end %>
+</ul>

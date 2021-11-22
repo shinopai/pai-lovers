@@ -1,0 +1,27 @@
+<div class="flex justify-center gap-4">
+  <div class="w-1/3 mt-5 pl-3">
+   <%= render 'layouts/partial/sidenav' %>
+  </div>
+  <div class="w-2/3">
+    <h1 class="mt-10 text-xl font-bold"><%= @user.name %>さんの参加コミュニティー一覧</h1>
+    
+    <% if @joined_communities.any? %>
+      <div class="mt-16 flex flex-wrap justify-center items-center gap-8">
+      <% @joined_communities.each do |community| %>
+        <div class="item w-32 h-32 object-cover">
+          <figure class="h-full">
+            <% if community.community_image? %>
+            <%= image_tag community.community_image.url, class: 'border-4 h-full' %>
+            <% else %>
+            <%= image_tag 'community.png', class: 'border-4 h-full' %>
+            <% end %>
+            <figcaption><%= link_to community.name, community_path(community), class: 'hover:text-blue-400 underline' %></figcaption>
+          </figure>
+        </div>
+      <% end %>
+      </div>
+    <% else %>
+      <p>まだ何もありません</p>
+    <% end %>
+  </div>
+</div>

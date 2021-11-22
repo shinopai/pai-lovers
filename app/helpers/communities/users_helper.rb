@@ -1,0 +1,2 @@
+module Communities::UsersHelper
+end
